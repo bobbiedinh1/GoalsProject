@@ -10,6 +10,7 @@ export default function App() {
       </View>
       <View>
         <Text>List of goals....</Text>
+        <Text>List of goals....</Text>
       </View>
     </View>
   );
