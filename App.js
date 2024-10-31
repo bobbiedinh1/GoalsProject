@@ -1,12 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {useState} from 'react';
+import { StyleSheet, Text, View, TextInput, Button} from "react-native";
 import { SafeAreaView, SafeAreaProvider} from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
 export default function App() {
 
+  const [enterGoalText, setEnterGoalText] = useState('');
+
   function goalInputHandler(enteredText) {
-    console.log(enteredText);
+    setEnterGoalText(enteredText);
+  }
+
+  function addGoalHandler(){
+    alert(enterGoalText);
   }
 
   return (
@@ -20,10 +27,10 @@ export default function App() {
               style={styles.textInput}
               onChangeText={goalInputHandler}
             />
-            <Button style={styles.buttonView} title="Add Your Goal" />
+            <Button onPress={addGoalHandler} title="Add Your Goal" />
           </View>
           <View style={styles.listView}>
-            <Text>List of goals.</Text>
+            <Text>List of goals...</Text>
           </View>
         </View>
       </SafeAreaView>
