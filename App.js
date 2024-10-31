@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TextInput, Button} from "react-native";
 import { SafeAreaView, SafeAreaProvider} from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -7,14 +7,27 @@ import { StatusBar } from "expo-status-bar";
 export default function App() {
 
   const [enterGoalText, setEnterGoalText] = useState('');
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  useEffect(() => {
+    console.log(courseGoals);
+  }, [courseGoals]);
+  
 
   function goalInputHandler(enteredText) {
     setEnterGoalText(enteredText);
   }
 
+  // function addGoalHandler(){
+  //   setCourseGoals([...courseGoals, enterGoalText]);
+  // }
   function addGoalHandler(){
-    alert(enterGoalText);
+    setCourseGoals((currentCourseGoals)=> [
+      ...currentCourseGoals,
+      enterGoalText
+    ])
   }
+
 
   return (
     <SafeAreaProvider>
@@ -30,7 +43,7 @@ export default function App() {
             <Button onPress={addGoalHandler} title="Add Your Goal" />
           </View>
           <View style={styles.listView}>
-            <Text>List of goals...</Text>
+              {courseGoals.map((courseGoal)=> <Text>{courseGoal}</Text>)}
           </View>
         </View>
       </SafeAreaView>
